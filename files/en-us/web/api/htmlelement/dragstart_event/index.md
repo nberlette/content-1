@@ -51,7 +51,6 @@ For a complete example of drag and drop, see the page for the [`drag`](/en-US/do
 <div id="container">
   <div id="draggable" draggable="true">This div is draggable</div>
 </div>
-<div class="dropzone"></div>
 ```
 
 #### CSS
@@ -86,11 +85,11 @@ const source = document.getElementById("draggable");
 source.addEventListener("dragstart", (event) => {
   // make it half transparent
   event.target.classList.add("dragging");
-});
 
-source.addEventListener("dragend", (event) => {
-  // reset the transparency
-  event.target.classList.remove("dragging");
+  source.addEventListener("dragend", (event) => {
+    // reset the transparency
+    event.target.classList.remove("dragging");
+  }, { once: true }); // just to clean up after ourselves
 });
 ```
 
